@@ -24,32 +24,20 @@ import java.util.List;
 public class Main {
 
     public static void main(String[] args) throws ParserConfigurationException, IOException, SAXException {
-
+//Задача 1:
         String[] columnMapping = {"id", "firstName", "lastName", "country", "age"};
         String fileName = "data.csv";
         List<Employee> list = parseCSV(columnMapping, fileName);
         String json = listToJson(list);
         String jsonFilename = "data.json";
         writeString(json, jsonFilename);
-        //Задача 2: XML - JSON парсер
+ //Задача 2: 
         String xmlFileName = "data.xml";
         List<Employee> list2 = parseXML(xmlFileName);
         String json2 = listToJson(list2);
         String jsonFilename2 = "data2.json";
         writeString(json2, jsonFilename2);
-    }
-    /*private static String readString(String filename) {
-        StringBuilder sb=new StringBuilder();
-        try (BufferedReader br=new BufferedReader(new FileReader(filename))){
-            String s;
-            while ((s=br.readLine()) !=null){
-                sb.append(s).append("\n");
-            }
-        }catch (IOException ex) {
-            System.out.println(ex.getMessage());
-        }
-        return sb.toString();
-    }*/
+    }   
 
     private static List<Employee> parseCSV(String[] columnMapping, String fileName) {
         try (CSVReader csvReader = new CSVReader(new FileReader(fileName))) {
@@ -66,21 +54,7 @@ public class Main {
         }
         return null;
     }
-   /* private static List<Employee> jsonToList(String json) {
-        List<Employee> list = new ArrayList<>();
-        GsonBuilder builder = new GsonBuilder();
-        Gson gson = builder.create();
-        try {
-            Object obj = new JSONParser().parse(json);
-            JSONArray array = (JSONArray) obj;
-            for (Object a : array) {
-                list.add(gson.fromJson(a.toString(), Employee.class));
-            }
-        } catch (ParseException e) {
-            e.printStackTrace();
-        }
-        return list;
-    }*/
+ 
 
     private static String listToJson(List<Employee> list) {
         GsonBuilder builder = new GsonBuilder();
@@ -99,7 +73,7 @@ public class Main {
             e.printStackTrace();
         }
     }
-    private static List<Employee> parseXML(String xmlFilename) throws ParserConfigurationException, IOException, SAXException, SAXException {
+    private static List<Employee> parseXML(String xmlFilename) throws ParserConfigurationException, IOException, SAXException {
         List<String> elements = new ArrayList<>();
         List<Employee> list = new ArrayList<>();
         DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
